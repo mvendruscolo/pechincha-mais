@@ -1,0 +1,22 @@
+version: '2'
+services:
+    pechinchamais-app:
+        image: pechinchamais
+        external_links:
+            - pechinchamais-postgresql:postgresql
+            - pechinchamais-elasticsearch:elasticsearch
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/pechinchamais
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=elasticsearch:9300
+        ports:
+            - 8080:8080
+    pechinchamais-postgresql:
+        extends:
+            file: postgresql.yml
+            service: pechinchamais-postgresql
+    pechinchamais-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: pechinchamais-elasticsearch

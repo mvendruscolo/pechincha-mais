@@ -1,0 +1,10 @@
+version: '2'
+services:
+    pechinchamais-elasticsearch:
+        container_name: pechinchamais-elasticsearch
+        image: elasticsearch:1.7.5
+        # volumes:
+        #     - ~/volumes/jhipster/pechinchamais/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300
